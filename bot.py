@@ -3,15 +3,9 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Messa
 import requests
 import validators
 import io
+import os
 
-
-# Functions to read secret token from file
-def read_token():
-    with open('token.txt', 'r') as file:
-        return file.read().strip()
-
-# Read the token from file
-TOKEN = read_token()
+TOKEN = os.getenv('TELEGRAM_TOKEN')
 
 
 # Dictionary to store the state of each user
@@ -40,7 +34,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 # Function to handle the /help command
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('''Main Commands:\n
-Type /process_image to process an image.\n\n
+Type /process_image to process an image url (.jpg, .png, .jpeg).\n\n
 Other Commands:\n
 Type /cancel to cancel the image processing.\n''')
 

@@ -1,13 +1,18 @@
-# Telegram bot - image downloader
+# Telegram Bot - Image Downloader
+
+This Telegram bot processes URLs sent by users, downloads the images if the URLs are valid, and sends them back to the users directly in the chat.
 
 ## Setup
 
-1. Install dependencies from `requirements.txt`
-2. Create `token.txt` in the root directory and put your telegram bot token there.
+### Prerequisites
+1. **Docker**: Ensure Docker is installed on your system. If not, download and install Docker from [Docker's official website](https://www.docker.com/products/docker-desktop).
 
-## Run
-1. Navigate to root directory
-2. Run `python bot.py`
+### Configuration
+2. Create a `.env` file in the root directory of your project with the following content. Replace `your_telegram_bot_token_here` with your Telegram bot token: `TELEGRAM_TOKEN=your_telegram_bot_token_here`
+
+## Run/Stop
+1. Build the Docker Image: `docker-compose up --build`
+2. Stopping the Bot: `docker-compose down`
 
 ## Features
 * Bot supports /help command, to help new users.
