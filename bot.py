@@ -3,6 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Messa
 import urllib3
 import requests
 import validators
+import io
 
 
 # Functions to read secret token from file
@@ -69,6 +70,9 @@ async def handle_url_message(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 response = requests.get(url)
                 if response.status_code == 200:
                     await update.message.reply_text('Image URL is valid. Processing the image...')
+                    image_bytes = io.BytesIO(response.content)
+                    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=image_bytes)
+                    clear_user_state(update.effective_chat.id)
                 else:
                     await update.message.reply_text('The image URL is not accessible.')
             except Exception as e:
