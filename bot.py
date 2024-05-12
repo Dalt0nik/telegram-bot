@@ -1,6 +1,5 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
-import urllib3
 import requests
 import validators
 import io
@@ -40,7 +39,10 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 
 # Function to handle the /help command
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text('Commands:\nType /process_image to process an image.')
+    await update.message.reply_text('''Main Commands:\n
+Type /process_image to process an image.\n\n
+Other Commands:\n
+Type /cancel to cancel the image processing.\n''')
 
 # Function to handle the /process_image command
 async def process_image_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
